@@ -1,13 +1,12 @@
 local menuIsShowed, hasAlreadyEnteredMarker, isInMarker = false, false, false
 
 function ShowJobListingMenu()
-	ESX.TriggerServerCallback('esx_joblisting:getJobsList', function(jobs)
 		local elements = {}
 
-		for i=1, #jobs, 1 do
+		for k, v in pairs(Config.Jobs) do
 			table.insert(elements, {
-				label = jobs[i].label,
-				job   = jobs[i].job
+				label = v.Name,
+				coords = v.Cloakroom
 			})
 		end
 
@@ -16,14 +15,13 @@ function ShowJobListingMenu()
 			align    = 'top-left',
 			elements = elements
 		}, function(data, menu)
-			TriggerServerEvent('esx_joblisting:setJob', data.current.job)
+			SetNewWaypoint(data.current.coords.x, data.current.coords.y)
 			ESX.ShowNotification(_U('new_job'))
 			menu.close()
 		end, function(data, menu)
 			menu.close()
 		end)
 
-	end)
 end
 
 AddEventHandler('esx_joblisting:hasExitedMarker', function(zone)

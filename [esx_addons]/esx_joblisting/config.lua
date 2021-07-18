@@ -10,3 +10,16 @@ Config.Locale       = 'en'
 Config.Zones = {
 	vector3(-265.0, -963.6, 30.2)
 }
+
+Config.Jobs = {
+
+	{
+		Name = "Brinks",
+		Cloakroom = {x=0.35, y=-660.1}
+	},
+
+	{
+		Name = "Eboueur",
+		Cloakroom = {x=-321.70, y=-1545.94}
+	}
+}
